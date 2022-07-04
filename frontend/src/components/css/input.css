@@ -1,0 +1,9 @@
+.id {
+    width: 80px;
+}
+
+.text {
+    height:50px;
+    border: solid green;
+    overflow: auto;
+}

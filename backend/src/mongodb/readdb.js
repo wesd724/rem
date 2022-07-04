@@ -9,7 +9,6 @@ export const read = (data) => {
 
         let cursor = contentsCollection.find({});
         const result = await cursor.toArray();
-        console.log(result);
-
+        return result;
     })
 }
