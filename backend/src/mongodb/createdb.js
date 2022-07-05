@@ -8,7 +8,7 @@ export const create = (data) => {
         const contentsCollection = db.collection('contents');
 
         const contents = { id: data.id, text: data.text };
-        const result = await contentsCollection.insertOne(contents);
+        await contentsCollection.insertOne(contents);
     })
 }
 
