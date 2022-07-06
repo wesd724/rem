@@ -15,21 +15,18 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-    res.send(`Hi`);
-})
-
-app.get("/read", (req, res) => {
     read().then(response => res.send(response))
 })
 
-app.post("/create", (req, res) => {
+app.post("/", (req, res) => {
     create(req.body);
     res.send(`create`);
 })
 
-app.delete("/delete", (req, res) => {
+app.delete("/", (req, res) => {
     deleted(req.body._id);
     res.send(`delete`);
 })
+
 
 app.listen(process.env.PORT, () => console.log("CONNECTED!"));

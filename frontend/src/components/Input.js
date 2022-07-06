@@ -4,11 +4,11 @@ import "./css/input.css"
 import List from "./List";
 
 const inputData = data => {
-    return axios.post(process.env.REACT_APP_CREATE_URL, data);
+    return axios.post(process.env.REACT_APP_URL, data);
   }
 
 const readData = () => {
-    return axios.get(process.env.REACT_APP_READ_URL);
+    return axios.get(process.env.REACT_APP_URL);
   }
 
 const InputForm = () => {

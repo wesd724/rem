@@ -5,7 +5,7 @@ import React, { useCallback } from "react";
 
 const List = ({ lists, setList, readData }) => {
     const del = useCallback(async (id) => {
-        await axios.delete(process.env.REACT_APP_DELETE_URL, {
+        await axios.delete(process.env.REACT_APP_URL, {
             data: {
                 _id: id
             }
