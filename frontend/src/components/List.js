@@ -1,16 +1,40 @@
 import axios from "axios";
 import React, { useCallback } from "react";
 
+const updateData = data => {
+    return axios.put(process.env.REACT_APP_URL, data);
+}
 
+const deleteData = id => {
+    return axios.delete(process.env.REACT_APP_URL, {
+        data: {
+            _id: id
+        }
+    });
+}
 
 const List = ({ lists, setList, readData }) => {
-    const del = useCallback(async (id) => {
-        await axios.delete(process.env.REACT_APP_URL, {
-            data: {
-                _id: id
+
+    const update = useCallback(async (e, id) => {
+        const currentElement = e.target;
+        const textElement = e.target.parentNode.previousSibling.previousSibling;
+        const beforeText = textElement.textContent;
+        if (currentElement.textContent === 'UPDATE') {
+            currentElement.textContent = 'FINISH';
+            textElement.innerHTML = `<textarea>${beforeText}</textarea>`;
+        } else {
+            currentElement.textContent = 'UPDATE';
+            const changeText = {
+                _id: id,
+                text: textElement.children[0].value
             }
-        })
-        //readData().then(res => setList([...res.data]));
+            await updateData(changeText);
+            readData().then(res => setList([...res.data]));
+        }
+    }, [setList, readData]);
+
+    const deleted = useCallback(async (id) => {
+        await deleteData(id);
         setList(lists => lists.filter(value => value._id !== id));
     }, [setList]);
 
@@ -23,11 +47,12 @@ const List = ({ lists, setList, readData }) => {
                 </tr>
             </thead>
             <tbody>
-                {lists.map((value) =>
+                {lists.map(value =>
                     <tr key={value._id}>
                         <td>{value.id}</td>
                         <td>{value.text}</td>
-                        <td><button onClick={() => del(value._id)}>DEL</button></td>
+                        <td><button onClick={() => deleted(value._id)}>DEL</button></td>
+                        <td><button onClick={e => update(e, value._id)}>UPDATE</button></td>
                     </tr>
                 )}
             </tbody>

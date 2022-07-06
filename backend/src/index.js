@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { create } from './mongodb/createdb.js';
 import { read } from "./mongodb/readdb.js";
 import { deleted } from "./mongodb/deletedb.js";
+import { update } from "./mongodb/updatedb.js";
 
 dotenv.config();
 
@@ -20,13 +21,17 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
     create(req.body);
-    res.send(`create`);
+    res.send('create');
 })
 
 app.delete("/", (req, res) => {
     deleted(req.body._id);
-    res.send(`delete`);
+    res.send('delete');
 })
 
+app.put("/", (req, res) => {
+    update(req.body);
+    res.send('update');
+})
 
 app.listen(process.env.PORT, () => console.log("CONNECTED!"));

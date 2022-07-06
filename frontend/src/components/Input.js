@@ -3,13 +3,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./css/input.css"
 import List from "./List";
 
-const inputData = data => {
+const createData = data => {
     return axios.post(process.env.REACT_APP_URL, data);
-  }
+}
 
 const readData = () => {
     return axios.get(process.env.REACT_APP_URL);
-  }
+}
 
 const InputForm = () => {
     const [data, setData] = useState({
@@ -34,7 +34,7 @@ const InputForm = () => {
     const { id, text } = data;
 
     const click = useCallback(async () => {
-        await inputData(data);
+        await createData(data);
         const { data: readResult } = await readData();
         setList([...readResult]);
     }, [data]);

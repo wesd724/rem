@@ -8,6 +8,6 @@ export const deleted = id => {
         const db = await connection.db(process.env.DB_NAME);
         const contentsCollection = db.collection('contents');
 
-        const r = await contentsCollection.deleteOne({_id: ObjectId(id)});
+        await contentsCollection.deleteOne({_id: ObjectId(id)});
     })
 }
