@@ -4,9 +4,12 @@ import "./css/input.css"
 import List from "./List";
 
 const inputData = data => {
-    axios.post(process.env.REACT_APP_CREATE_URL, data)
-        .then(res => console.log(res.data));
-}
+    return axios.post(process.env.REACT_APP_CREATE_URL, data);
+  }
+
+const readData = () => {
+    return axios.get(process.env.REACT_APP_READ_URL);
+  }
 
 const InputForm = () => {
     const [data, setData] = useState({
@@ -18,8 +21,7 @@ const InputForm = () => {
 
     useEffect(() => {
         console.log(`Input useEffect post("/read") call rendering`);
-        axios.post(process.env.REACT_APP_READ_URL, {})
-            .then(res => setList([...res.data]));
+        readData().then(res => setList([...res.data]));
     }, [])
 
     const change = useCallback(e => {
@@ -28,24 +30,25 @@ const InputForm = () => {
         }
         )
     }, []);
-    
+
     const { id, text } = data;
 
-    const click = useCallback(() => {
-        inputData(data);
-        axios.post(process.env.REACT_APP_READ_URL, {})
-            .then(res => setList([...res.data]));
+    const click = useCallback(async () => {
+        await inputData(data);
+        const { data: readResult } = await readData();
+        setList([...readResult]);
     }, [data]);
 
     return (
         <>
             <div>
-                <b>ID</b>: <input className="id" name="id" type="text" onChange={change} value={id} ></input>
+                <b>ID</b>:
+                <input className="id" name="id" type="text" onChange={change} value={id} ></input>
             </div>
             <b>TEXT</b><br />
             <textarea className="text" name="text" onChange={change} value={text}></textarea>
             <button onClick={click}>WRITE</button>
-            <List lists={list} />
+            <List lists={list} setList={setList} readData={readData} />
         </>
     )
 }
