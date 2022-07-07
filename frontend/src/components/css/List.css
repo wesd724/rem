@@ -1,0 +1,27 @@
+table {
+    border: 5px solid #316B83;
+}
+
+th, td {
+    border: 5px solid #6D8299;
+}
+
+td > button {
+    color: white;
+    background-color: black;
+}
+
+
+td:nth-child(1) {
+    max-width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+td:nth-child(2) {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

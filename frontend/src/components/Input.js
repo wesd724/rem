@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
-import "./css/input.css"
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import List from "./List";
+import "./css/input.css";
 
 const createData = data => {
     return axios.post(process.env.REACT_APP_URL, data);
@@ -19,10 +19,7 @@ const InputForm = () => {
 
     const [list, setList] = useState([]);
 
-    useEffect(() => {
-        console.log(`Input useEffect post("/read") call rendering`);
-        readData().then(res => setList([...res.data]));
-    }, [])
+    const element = useRef();
 
     const change = useCallback(e => {
         setData(data => {
@@ -31,26 +28,36 @@ const InputForm = () => {
         )
     }, []);
 
+    useEffect(() => {
+        console.log(`Input useEffect post("/read") call rendering`);
+        readData().then(res => setList([...res.data]));
+    }, [])
+
     const { id, text } = data;
 
     const click = useCallback(async () => {
         await createData(data);
         const { data: readResult } = await readData();
         setList([...readResult]);
+        setData({ id: "", text: "" });
+        element.current.focus();
     }, [data]);
 
     return (
-        <>
+        <div className="form">
             <div>
                 <b>ID</b>:
-                <input className="id" name="id" type="text" onChange={change} value={id} ></input>
+                <input className="id" name="id" type="text" onChange={change} value={id} ref={element} ></input>
             </div>
-            <b>TEXT</b><br />
-            <textarea className="text" name="text" onChange={change} value={text}></textarea>
-            <button onClick={click}>WRITE</button>
+            <div>
+                <b>TEXT</b><br />
+                <textarea className="textarea" name="text" onChange={change} value={text}></textarea>
+                <button className="textbutton" onClick={click}>WRITE</button>
+            </div>
             <List lists={list} setList={setList} readData={readData} />
-        </>
+        </div>
     )
 }
 
 export default InputForm;
+

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useCallback } from "react";
+import "./css/List.css";
 
 const updateData = data => {
     return axios.put(process.env.REACT_APP_URL, data);
@@ -61,3 +62,4 @@ const List = ({ lists, setList, readData }) => {
 }
 
 export default List;
+

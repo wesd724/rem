@@ -1,9 +1,23 @@
-.id {
-    width: 80px;
+.form {
+    position: absolute;
+    top: 100px;
+    left: 200px;
 }
 
-.text {
+.id {
+    width: 80px;
+    border: solid teal 2px;
+}
+
+.textarea {
     height:50px;
-    border: solid green;
+    border: solid;
     overflow: auto;
+}
+
+.textbutton {
+    background-color: #73A9AD;
+    position: relative;
+    left: 3px;
+    bottom: 6px;
 }

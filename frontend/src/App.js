@@ -1,12 +1,14 @@
 import React from "react";
 import InputForm from "./components/Input";
+import "./app.css"
 
 const App = () => {
   return (
-    <div>
-      <InputForm />
-    </div>
+    <>
+      <InputForm className="inputform" />
+    </>
   )
 }
 
 export default App;
+
