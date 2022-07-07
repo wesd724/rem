@@ -1,19 +1,7 @@
-import axios from "axios";
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+import { updateData, deleteData, readData } from "../lib/api";
 import "./css/List.css";
-
-const updateData = data => {
-    return axios.put(process.env.REACT_APP_URL, data);
-}
-
-const deleteData = id => {
-    return axios.delete(process.env.REACT_APP_URL, {
-        data: {
-            _id: id
-        }
-    });
-}
 
 const List = ({ lists, setList }) => {
     const update = useCallback(async (e, id) => {
@@ -31,8 +19,9 @@ const List = ({ lists, setList }) => {
             }
             await updateData(changeText);
             textElement.innerHTML = `${changeText.text}`;
+            readData().then(res => setList([...res.data]));
         }
-    }, []);
+    }, [setList]);
 
     const deleted = useCallback(async (id) => {
         await deleteData(id);

@@ -1,15 +1,7 @@
-import axios from "axios";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import List from "./List";
+import { createData, readData } from "../lib/api";
 import "./css/input.css";
-
-const createData = data => {
-    return axios.post(process.env.REACT_APP_URL, data);
-}
-
-const readData = () => {
-    return axios.get(process.env.REACT_APP_URL);
-}
 
 const InputForm = () => {
     const [data, setData] = useState({
@@ -60,4 +52,3 @@ const InputForm = () => {
 }
 
 export default InputForm;
-
