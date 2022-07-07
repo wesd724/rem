@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useCallback } from "react";
+import { Link } from "react-router-dom";
 import "./css/List.css";
 
 const updateData = data => {
@@ -14,8 +15,7 @@ const deleteData = id => {
     });
 }
 
-const List = ({ lists, setList, readData }) => {
-
+const List = ({ lists, setList }) => {
     const update = useCallback(async (e, id) => {
         const currentElement = e.target;
         const textElement = e.target.parentNode.previousSibling.previousSibling;
@@ -30,9 +30,9 @@ const List = ({ lists, setList, readData }) => {
                 text: textElement.children[0].value
             }
             await updateData(changeText);
-            readData().then(res => setList([...res.data]));
+            textElement.innerHTML = `${changeText.text}`;
         }
-    }, [setList, readData]);
+    }, []);
 
     const deleted = useCallback(async (id) => {
         await deleteData(id);
@@ -40,26 +40,34 @@ const List = ({ lists, setList, readData }) => {
     }, [setList]);
 
     return (
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>TEXT</th>
-                </tr>
-            </thead>
-            <tbody>
-                {lists.map(value =>
-                    <tr key={value._id}>
-                        <td>{value.id}</td>
-                        <td>{value.text}</td>
-                        <td><button onClick={() => deleted(value._id)}>DEL</button></td>
-                        <td><button onClick={e => update(e, value._id)}>UPDATE</button></td>
+        <>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TEXT</th>
                     </tr>
-                )}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {lists.map((value, index) =>
+                        <tr key={value._id}>
+                            <td>{value.id}</td>
+                            <td>{value.text}</td>
+                            <td><button onClick={() => deleted(value._id)}>DELETE</button></td>
+                            <td><button onClick={e => update(e, value._id)}>UPDATE</button></td>
+                            <td><Link to={{
+                                pathname: `/view/${index + 1}`,
+                                state: {
+                                    id: value.id,
+                                    text: value.text
+                                }
+                            }}><button>DETAIL</button></Link></td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        </>
     )
 }
 
 export default List;
-

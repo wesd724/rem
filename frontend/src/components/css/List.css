@@ -1,4 +1,5 @@
 table {
+    table-layout: fixed;
     border: 5px solid #316B83;
 }
 
@@ -9,6 +10,7 @@ th, td {
 td > button {
     color: white;
     background-color: black;
+    width: 80px;
 }
 
 
