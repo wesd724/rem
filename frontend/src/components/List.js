@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { updateData, deleteData, readData } from "../lib/api";
+import { updateData, readData } from "../lib/api";
 import "./css/List.css";
 
 const List = ({ lists, setList }) => {
     const update = useCallback(async (e, id) => {
         const currentElement = e.target;
-        const textElement = e.target.parentNode.previousSibling.previousSibling;
+        const textElement = e.target.parentNode.previousSibling;
         const beforeText = textElement.textContent;
         if (currentElement.textContent === 'UPDATE') {
             currentElement.textContent = 'FINISH';
@@ -23,11 +23,6 @@ const List = ({ lists, setList }) => {
         }
     }, [setList]);
 
-    const deleted = useCallback(async (id) => {
-        await deleteData(id);
-        setList(lists => lists.filter(value => value._id !== id));
-    }, [setList]);
-
     return (
         <>
             <table border="1">
@@ -42,11 +37,11 @@ const List = ({ lists, setList }) => {
                         <tr key={value._id}>
                             <td>{value.id}</td>
                             <td>{value.text}</td>
-                            <td><button onClick={() => deleted(value._id)}>DELETE</button></td>
                             <td><button onClick={e => update(e, value._id)}>UPDATE</button></td>
                             <td><Link to={{
                                 pathname: `/view/${index + 1}`,
                                 state: {
+                                    _id: value._id,
                                     id: value.id,
                                     text: value.text
                                 }

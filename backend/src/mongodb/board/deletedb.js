@@ -1,14 +1,13 @@
-import connect from "./connect.js"
+import connect from "../connect.js"
 import dotenv from "dotenv";
+import { ObjectId } from "bson";
 dotenv.config();
 
-export const create = data => {
+export const deleted = id => {
     connect().then(async (connection) => {
         const db = await connection.db(process.env.DB_NAME);
         const contentsCollection = db.collection('contents');
 
-        const contents = { id: data.id, text: data.text };
-        await contentsCollection.insertOne(contents);
+        await contentsCollection.deleteOne({_id: ObjectId(id)});
     })
 }
-

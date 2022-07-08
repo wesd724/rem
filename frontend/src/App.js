@@ -6,7 +6,6 @@ import View from "./components/view";
 import ErrorPage from "./components/error";
 
 const App = () => {
-  console.log(`app`)
   return (
     <>
       <Route exact path="/" component={InputForm} />
@@ -19,5 +18,3 @@ const App = () => {
 }
 
 export default App;
-
-

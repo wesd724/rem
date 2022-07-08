@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import List from "./List";
-import { createData, readData } from "../lib/api";
+import { createData, newReply, readData } from "../lib/api";
 import "./css/input.css";
 
 const InputForm = () => {
     const [data, setData] = useState({
+        _id: "",
         id: "",
         text: ""
     });
@@ -30,6 +31,8 @@ const InputForm = () => {
     const click = useCallback(async () => {
         await createData(data);
         const { data: readResult } = await readData();
+        const createDataObjectId = readResult[readResult.length - 1]["_id"];
+        await newReply({ _id: createDataObjectId });
         setList([...readResult]);
         setData({ id: "", text: "" });
         element.current.focus();
