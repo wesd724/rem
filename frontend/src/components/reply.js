@@ -8,10 +8,15 @@ const Reply = ({ boardId }) => {
 
     const [reply, setReply] = useState("");
 
-    const [replyIndex, setReplyIndex] = useState(1);
+    const [replyIndex, setReplyIndex] = useState(0);
 
     useEffect(() => {
-        readReply(boardId).then(res => setReplyList(res.data.replies));
+        console.log(`useEffect get("/reply") call rendering`);
+        readReply(boardId).then(res => {
+            setReplyList(res.data.replies);
+            if (res.data.replies.length === 0) setReplyIndex(1);
+            else setReplyIndex(res.data.replies.at(-1).index + 1);
+        });
     }, [boardId]);
 
     const change = useCallback(e => {

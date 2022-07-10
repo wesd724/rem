@@ -4,7 +4,7 @@ dotenv.config();
 
 export const create = data => {
     connect().then(async (connection) => {
-        const db = await connection.db(process.env.DB_NAME);
+        const db = connection.db(process.env.DB_NAME);
         const contentsCollection = db.collection('contents');
 
         await contentsCollection.insertOne({ id: data.id, text: data.text });

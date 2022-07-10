@@ -31,7 +31,7 @@ const InputForm = () => {
     const click = useCallback(async () => {
         await createData(data);
         const { data: readResult } = await readData();
-        const createDataObjectId = readResult[readResult.length - 1]["_id"];
+        const createDataObjectId = readResult.at(-1)["_id"];
         await newReply({ _id: createDataObjectId });
         setList([...readResult]);
         setData({ id: "", text: "" });

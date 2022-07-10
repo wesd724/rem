@@ -4,7 +4,7 @@ dotenv.config();
 
 export const newReply = boardId => {
     connect().then(async (connection) => {
-        const db = await connection.db(process.env.DB_NAME);
+        const db = connection.db(process.env.DB_NAME);
         const replyCollection = db.collection('reply');
 
         await replyCollection.insertOne({ boardId, replies: [] });

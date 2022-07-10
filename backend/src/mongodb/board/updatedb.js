@@ -5,7 +5,7 @@ dotenv.config();
 
 export const update = data => {
     connect().then(async (connection) => {
-        const db = await connection.db(process.env.DB_NAME);
+        const db = connection.db(process.env.DB_NAME);
         const contentsCollection = db.collection('contents');
 
         const { _id, text } = data;
