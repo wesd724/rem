@@ -42,3 +42,12 @@ export const deleteReply = boardId => {
         }
     });
 }
+
+export const deleteOneReply = ({ boardId, index }) => {
+    return axios.delete(process.env.REACT_APP_DELETE_ONE_REPLY_URL, {
+        data: {
+            boardId,
+            index
+        }
+    });
+}

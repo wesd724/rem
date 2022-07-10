@@ -17,6 +17,7 @@ export const newReply = boardId => {
         boardId: data._id(each text unique _id)
         replies: [
             {
+                "index": 1,
                 "reply": "asdasd",
                 nestedReplies: [
                     "first",
@@ -25,6 +26,7 @@ export const newReply = boardId => {
 
             },
             {
+                "index": 2,
                 "reply": "two",
                 nestedReplies: [
                     "one",
@@ -40,6 +42,7 @@ export const newReply = boardId => {
         boardId: data._id(each text unique _id)
         replies: [
             {
+                "index": 1,
                 "reply": "asdasd",
                 nestedReplies: [
                     "first",
@@ -48,6 +51,7 @@ export const newReply = boardId => {
 
             },
             {
+                "index": 2,
                 "reply": "two",
                 nestedReplies: [
                     "one",

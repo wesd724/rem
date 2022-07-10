@@ -1,6 +1,7 @@
 import express from 'express';
 import { addReply } from '../mongodb/reply/addReply.js';
-import { deleteReply } from '../mongodb/reply/deleteReply.js';
+import { deleteOneReply } from '../mongodb/reply/deleteOneReply.js';
+import { deleteReply } from '../mongodb/reply/deleteReplydb.js';
 import { newReply } from '../mongodb/reply/newReplydb.js';
 import { readReply } from '../mongodb/reply/readReplydb.js';
 
@@ -22,6 +23,11 @@ router.post("/add", (req, res) => {
 
 router.delete("/delete", (req, res) => {
     deleteReply(req.body.boardId);
+    res.send('delete reply');
+})
+
+router.delete("/deleteOne", (req, res) => {
+    deleteOneReply(req.body);
     res.send('delete reply');
 })
 
