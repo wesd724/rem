@@ -1,0 +1,37 @@
+.good-bad {
+    position: relative;
+    top: 470px;
+    left: 330px;
+    font-size: 40px;
+}
+
+.good {
+    position: absolute;
+    color: slateblue;
+}
+
+.good-icon {
+    position: absolute;
+}
+
+.good-count {
+    position: absolute;
+    top:-5px;
+    right: 10px;
+}
+
+.bad {
+    position: absolute;
+    color: tomato;
+}
+
+.bad-icon {
+    position: absolute;
+    left:80px;
+}
+
+.bad-count {
+    position: absolute;
+    top: -7px;
+    left: 130px;
+}

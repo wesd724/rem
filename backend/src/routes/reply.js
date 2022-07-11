@@ -5,34 +5,34 @@ import { deleteReply } from '../mongodb/reply/deleteReplydb.js';
 import { newReply } from '../mongodb/reply/newReplydb.js';
 import { readReply } from '../mongodb/reply/readReplydb.js';
 
-const router = express.Router();
+const replyRouter = express.Router();
 
-router.get("/", (req, res) => {
+replyRouter.get("/", (req, res) => {
     readReply(req.query.boardId).then(response => res.send(response));
 })
 
-router.post("/new", (req, res) => {
+replyRouter.post("/new", (req, res) => {
     newReply(req.body._id);
     res.send('create new reply');
 })
 
-router.post("/add", (req, res) => {
+replyRouter.post("/add", (req, res) => {
     addReply(req.body);
     res.send('add reply');
 })
 
-router.delete("/delete", (req, res) => {
+replyRouter.delete("/delete", (req, res) => {
     deleteReply(req.body.boardId);
     res.send('delete reply');
 })
 
-router.delete("/deleteOne", (req, res) => {
+replyRouter.delete("/deleteOne", (req, res) => {
     deleteOneReply(req.body);
     res.send('delete reply');
 })
 
-router.put("/", (req, res) => {
+replyRouter.put("/", (req, res) => {
     res.send('update reply');
 })
 
-export default router;
+export default replyRouter;

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { updateData, readData } from "../lib/api";
+import { updateData, readData, addViews } from "../lib/api";
 import "./css/List.css";
 
 const List = ({ lists, setList }) => {
@@ -43,9 +43,10 @@ const List = ({ lists, setList }) => {
                                 state: {
                                     _id: value._id,
                                     id: value.id,
-                                    text: value.text
+                                    text: value.text,
+                                    view: value.view
                                 }
-                            }}><button>DETAIL</button></Link></td>
+                            }}><button onClick={() => addViews({ _id: value._id })}>DETAIL</button></Link></td>
                         </tr>
                     )}
                 </tbody>

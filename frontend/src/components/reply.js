@@ -11,7 +11,6 @@ const Reply = ({ boardId }) => {
     const [replyIndex, setReplyIndex] = useState(0);
 
     useEffect(() => {
-        console.log(`useEffect get("/reply") call rendering`);
         readReply(boardId).then(res => {
             setReplyList(res.data.replies);
             if (res.data.replies.length === 0) setReplyIndex(1);

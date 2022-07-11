@@ -5,7 +5,6 @@ import "./css/input.css";
 
 const InputForm = () => {
     const [data, setData] = useState({
-        _id: "",
         id: "",
         text: ""
     });

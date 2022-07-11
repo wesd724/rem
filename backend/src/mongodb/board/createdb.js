@@ -7,6 +7,12 @@ export const create = data => {
         const db = connection.db(process.env.DB_NAME);
         const contentsCollection = db.collection('contents');
 
-        await contentsCollection.insertOne({ id: data.id, text: data.text });
+        await contentsCollection.insertOne({
+            id: data.id,
+            text: data.text,
+            view: 0,
+            good: 0,
+            bad: 0
+        });
     })
 }

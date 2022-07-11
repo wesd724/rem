@@ -6,7 +6,8 @@ import { create } from './mongodb/board/createdb.js';
 import { read } from "./mongodb/board/readdb.js";
 import { deleted } from "./mongodb/board/deletedb.js";
 import { update } from "./mongodb/board/updatedb.js";
-import router from "./routes/reply.js";
+import replyRouter from "./routes/reply.js";
+import viewRouter from "./routes/view.js";
 
 dotenv.config();
 
@@ -15,7 +16,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/reply", router);
+app.use("/reply", replyRouter);
+app.use("/view", viewRouter);
 
 app.get("/", (req, res) => {
     read().then(response => res.send(response))
