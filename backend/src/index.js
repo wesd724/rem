@@ -19,8 +19,8 @@ app.use(cors());
 app.use("/reply", replyRouter);
 app.use("/view", viewRouter);
 
-app.get("/", (req, res) => {
-    read().then(response => res.send(response))
+app.get("/:pages", (req, res) => {
+    read(req.params.pages).then(response => res.send(response))
 })
 
 app.post("/", (req, res) => {

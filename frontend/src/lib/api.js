@@ -4,8 +4,8 @@ export const createData = data => {
     return axios.post(process.env.REACT_APP_URL, data);
 }
 
-export const readData = () => {
-    return axios.get(process.env.REACT_APP_URL);
+export const readData = n => {
+    return axios.get(process.env.REACT_APP_URL + `/${n}`);
 }
 
 export const updateData = data => {

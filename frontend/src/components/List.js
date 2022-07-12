@@ -55,4 +55,4 @@ const List = ({ lists, setList }) => {
     )
 }
 
-export default List;
+export default React.memo(List);
