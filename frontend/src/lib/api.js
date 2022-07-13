@@ -1,11 +1,15 @@
 import axios from "axios";
+import { LIST_LENGTH_PER_PAGE as length } from "../data/constant";
 
 export const createData = data => {
     return axios.post(process.env.REACT_APP_URL, data);
 }
 
-export const readData = n => {
-    return axios.get(process.env.REACT_APP_URL + `/${n}`);
+export const readData = page => {
+    return axios.get(process.env.REACT_APP_URL + `/${page}`, {
+        params:
+            { length }
+    });
 }
 
 export const updateData = data => {

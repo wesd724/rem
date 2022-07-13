@@ -20,7 +20,8 @@ app.use("/reply", replyRouter);
 app.use("/view", viewRouter);
 
 app.get("/:pages", (req, res) => {
-    read(req.params.pages).then(response => res.send(response))
+    read(req.params.pages, req.query.length)
+        .then(response => res.send(response));
 })
 
 app.post("/", (req, res) => {

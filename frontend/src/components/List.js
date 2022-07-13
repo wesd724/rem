@@ -1,9 +1,11 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
 import { updateData, readData, addViews } from "../lib/api";
+import { userContext } from "../store/context";
 import "./css/List.css";
 
 const List = ({ lists, setList }) => {
+    const { page } = useContext(userContext);
     const update = useCallback(async (e, id) => {
         const currentElement = e.target;
         const textElement = e.target.parentNode.previousSibling;
@@ -19,9 +21,9 @@ const List = ({ lists, setList }) => {
             }
             await updateData(changeText);
             textElement.innerHTML = `${changeText.text}`;
-            readData().then(res => setList([...res.data]));
+            readData(page).then(res => setList([...res.data.result]));
         }
-    }, [setList]);
+    }, [setList, page]);
 
     return (
         <>
