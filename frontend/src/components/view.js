@@ -1,8 +1,26 @@
 import React from "react";
-import { deleteData, deleteReply } from "../lib/api";
+import { deleteData, deleteReply, updateData } from "../lib/api";
 import "./css/view.css"
 import Recommend from "./recommend";
 import Reply from "./reply";
+
+const update = async(e, id) => {
+    const currentElement = e.target;
+    const textElement = e.target.previousSibling;
+    const beforeText = textElement.textContent;
+    if (currentElement.textContent === 'UPDATE') {
+        currentElement.textContent = 'FINISH';
+        textElement.innerHTML = `<textarea>${beforeText}</textarea>`;
+    } else {
+        currentElement.textContent = 'UPDATE';
+        const changeText = {
+            _id: id,
+            text: textElement.children[0].value
+        }
+        await updateData(changeText);
+        textElement.innerHTML = `${changeText.text}`;
+    }
+}
 
 const deleted = async (id, history) => {
     await deleteData(id);
@@ -27,9 +45,10 @@ const View = ({ location, match, history }) => {
                     {id}
                 </div>
                 <hr className="view-boundary" />
-                <div>
+                <div className="view-text">
                     {text}
                 </div>
+                <button onClick={e => update(e, _id)}>UPDATE</button>
                 <button onClick={() => history.goBack()}>BACK</button>
                 <button onClick={() => deleted(_id, history)}>DELETE</button>
             </div>

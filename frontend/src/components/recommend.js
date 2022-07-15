@@ -5,6 +5,7 @@ import { readRecommend, recommend } from "../lib/api";
 
 const Recommend = ({ _id }) => {
     const [goodPoint, setGoodPoint] = useState(0);
+
     const [badPoint, setBadPoint] = useState(0);
 
     useEffect(() => {

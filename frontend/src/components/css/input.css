@@ -9,12 +9,6 @@
     border: solid teal 2px;
 }
 
-.textarea {
-    height:50px;
-    border: solid;
-    overflow: auto;
-}
-
 .textbutton {
     background-color: #73A9AD;
     position: relative;
@@ -26,6 +20,7 @@
     text-align: center;
     padding-left: 0px;
 }
+
 .pages > li {
     display: inline-block;
     list-style: none;
