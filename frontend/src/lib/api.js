@@ -67,3 +67,11 @@ export const recommend = data => {
 export const readRecommend = data => {
     return axios.post(process.env.REACT_APP_READ_RECOMMEND_URL, data);
 }
+
+export const login = data => {
+    return axios.post(process.env.REACT_APP_LOGIN_URL, data);
+}
+
+export const register = data => {
+    return axios.post(process.env.REACT_APP_SIGN_UP_URL, data);
+}

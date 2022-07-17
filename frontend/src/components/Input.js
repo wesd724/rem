@@ -6,10 +6,10 @@ import { LIST_LENGTH_PER_PAGE } from "../data/constant";
 import { userContext } from "../store/context";
 
 const InputForm = () => {
-    const { page, setPage } = useContext(userContext);
-
+    const { page, setPage, userId } = useContext(userContext);
     const [data, setData] = useState({
-        id: "",
+        id: userId,
+        title: "",
         text: ""
     });
 
@@ -21,8 +21,7 @@ const InputForm = () => {
     const change = useCallback(e => {
         setData(data => {
             return { ...data, [e.target.name]: e.target.value };
-        }
-        )
+        });
     }, []);
 
     useEffect(() => {
@@ -41,7 +40,8 @@ const InputForm = () => {
             }
         });
     }, [page, setPage])
-    const { id, text } = data;
+
+    const { id, title, text } = data;
 
     const click = useCallback(async () => {
         await createData(data);
@@ -50,7 +50,7 @@ const InputForm = () => {
         const createDataObjectId = readList.at(-1)["_id"];
         await newReply({ _id: createDataObjectId });
         setList([...readList]);
-        setData({ id: "", text: "" });
+        setData({ ...data, title: "", text: "" });
         setListLength(l => l + 1);
         setPage(Math.ceil((listLength + 1) / LIST_LENGTH_PER_PAGE));
         element.current.focus();
@@ -65,8 +65,12 @@ const InputForm = () => {
     return (
         <div className="form">
             <div>
-                <b>ID</b>:
-                <input className="id" name="id" type="text" onChange={change} value={id} ref={element} ></input>
+                <b>ID: {id}</b><br />
+                <button className="logout" onClick={() => window.location.replace("/")}>LOGOUT</button>
+            </div>
+            <div>
+                <b>TITLE</b><br />
+                <input className="title" name="title" onChange={change} value={title} ref={element} ></input>
             </div>
             <div>
                 <b>TEXT</b><br />

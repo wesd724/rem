@@ -8,6 +8,7 @@ import { deleted } from "./mongodb/board/deletedb.js";
 import { update } from "./mongodb/board/updatedb.js";
 import replyRouter from "./routes/reply.js";
 import viewRouter from "./routes/view.js";
+import accountRounter from "./routes/account.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use("/reply", replyRouter);
 app.use("/view", viewRouter);
+app.use("/account", accountRounter);
 
 app.get("/:pages", (req, res) => {
     read(req.params.pages, req.query.length)

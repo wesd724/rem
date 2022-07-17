@@ -4,7 +4,7 @@ import "./css/view.css"
 import Recommend from "./recommend";
 import Reply from "./reply";
 
-const update = async(e, id) => {
+const update = async (e, id) => {
     const currentElement = e.target;
     const textElement = e.target.previousSibling;
     const beforeText = textElement.textContent;
@@ -29,7 +29,7 @@ const deleted = async (id, history) => {
 }
 
 const View = ({ location, match, history }) => {
-    const { _id, id, text, view } = location.state;
+    const { _id, id, title, text, view } = location.state;
     const { number: n } = match.params;
     return (
         <div>
@@ -43,6 +43,10 @@ const View = ({ location, match, history }) => {
                 <hr className="view-boundary" />
                 <div>
                     {id}
+                </div>
+                <hr className="view-boundary" />
+                <div>
+                    {title}
                 </div>
                 <hr className="view-boundary" />
                 <div className="view-text">

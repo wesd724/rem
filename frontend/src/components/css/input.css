@@ -4,9 +4,21 @@
     left: 200px;
 }
 
-.id {
+.title {
     width: 80px;
     border: solid teal 2px;
+}
+
+.textarea {
+    width: 250px;
+    height: 80px;
+}
+
+.logout {
+    background-color: darkgrey;
+    position: relative;
+    left: 330px;
+    bottom: 30px;
 }
 
 .textbutton {

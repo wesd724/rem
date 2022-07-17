@@ -10,6 +10,7 @@ const List = ({ lists }) => {
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>TITlE</th>
                         <th>TEXT</th>
                     </tr>
                 </thead>
@@ -17,12 +18,14 @@ const List = ({ lists }) => {
                     {lists.map((value, index) =>
                         <tr key={value._id}>
                             <td>{value.id}</td>
+                            <td>{value.title}</td>
                             <td>{value.text}</td>
                             <td><Link to={{
                                 pathname: `/view/${index + 1}`,
                                 state: {
                                     _id: value._id,
                                     id: value.id,
+                                    title: value.title,
                                     text: value.text,
                                     view: value.view
                                 }

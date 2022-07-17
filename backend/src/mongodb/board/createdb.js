@@ -9,6 +9,7 @@ export const create = data => {
 
         await contentsCollection.insertOne({
             id: data.id,
+            title: data.title,
             text: data.text,
             view: 0,
             good: 0,
