@@ -44,16 +44,15 @@ const InputForm = () => {
 
     const click = useCallback(async () => {
         await createData(data);
-        const { result: readList } = await readData(Math.ceil((listLength + 1) / LIST_LENGTH_PER_PAGE))
-            .then(res => res.data);
-        const createDataObjectId = readList.at(-1)["_id"];
+        const { result: readList } = await readData(1).then(res => res.data);
+        const createDataObjectId = readList[0]["_id"];
         await newReply({ _id: createDataObjectId });
         setList([...readList]);
         setData({ ...data, title: "", text: "" });
         setListLength(l => l + 1);
-        setPage(Math.ceil((listLength + 1) / LIST_LENGTH_PER_PAGE));
+        setPage(1);
         element.current.focus();
-    }, [data, listLength, setPage]);
+    }, [data, setPage]);
 
     const readPage = useCallback(async (page) => {
         const { result: readList } = await readData(page).then(res => res.data);

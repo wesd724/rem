@@ -9,6 +9,7 @@ export const read = async (page, listLengthPerPage) => {
 
         const length = await contentsCollection.countDocuments();
         const cursor = contentsCollection.find({})
+            .sort({ _id: -1 })
             .skip((Number(page) - 1) * Number(listLengthPerPage))
             .limit(Number(listLengthPerPage));
         const result = await cursor.toArray();
