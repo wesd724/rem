@@ -37,6 +37,12 @@
     position: relative;
 }
 
+.reply-list .userId {
+    font-size: 15px;
+    padding-top: 5px;
+    color: #7a6464;
+}
+
 .reply-list .remove-Icon {
     position: absolute;
     top: 1px;

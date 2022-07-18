@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { deleteData, deleteReply, updateData } from "../lib/api";
+import { userContext } from "../store/context";
 import "./css/view.css"
 import Recommend from "./recommend";
 import Reply from "./reply";
 
 const update = async (e, id) => {
     const currentElement = e.target;
-    const textElement = e.target.previousSibling;
+    const textElement = e.target.parentNode.previousSibling.previousSibling;
     const beforeText = textElement.textContent;
     if (currentElement.textContent === 'UPDATE') {
         currentElement.textContent = 'FINISH';
@@ -29,6 +30,7 @@ const deleted = async (id, history) => {
 }
 
 const View = ({ location, match, history }) => {
+    const { userId } = useContext(userContext);
     const { _id, id, title, text, view } = location.state;
     const { number: n } = match.params;
     return (
@@ -52,9 +54,14 @@ const View = ({ location, match, history }) => {
                 <div className="view-text">
                     {text}
                 </div>
-                <button onClick={e => update(e, _id)}>UPDATE</button>
                 <button onClick={() => history.goBack()}>BACK</button>
-                <button onClick={() => deleted(_id, history)}>DELETE</button>
+                {
+                    userId === id ?
+                        <div className="private-button">
+                            <button onClick={e => update(e, _id)}>UPDATE</button>
+                            <button onClick={() => deleted(_id, history)}>DELETE</button>
+                        </div> : null
+                }
             </div>
             <Recommend _id={_id} />
             <Reply boardId={_id} />

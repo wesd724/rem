@@ -19,7 +19,7 @@
 
 .view-text > textarea {
     width: 385px;
-    height:230px;
+    height:195px;
     border: 2px solid rgb(99, 110, 110);
     overflow: auto;
 }
@@ -27,17 +27,17 @@
 .view > button:nth-of-type(1) {
     position: absolute;
     bottom: 6px;
+    right: 3px;
+}
+
+.private-button > button:nth-of-type(1) {
+    position: absolute;
+    bottom: 6px;
     left: 3px;
 }
 
-.view > button:nth-of-type(2) {
+.private-button > button:nth-of-type(2) {
     position: absolute;
     bottom: 6px;
-    right: 75px;
-}
-
-.view > button:nth-of-type(3) {
-    position: absolute;
-    bottom: 6px;
-    right: 3px;
+    left: 75px;
 }

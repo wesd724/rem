@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { ObjectId } from "bson";
 dotenv.config();
 
-export const addReply = ({ index, boardId, reply }) => {
+export const addReply = ({ boardId, index, userId, reply }) => {
     connect().then(async (connection) => {
         const db = connection.db(process.env.DB_NAME);
         const replyCollection = db.collection('reply');
@@ -16,6 +16,7 @@ export const addReply = ({ index, boardId, reply }) => {
                 $push: {
                     replies: {
                         index,
+                        userId,
                         reply,
                         nestedReplies: []
                     }

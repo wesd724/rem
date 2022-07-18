@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { addReply, deleteOneReply, readReply } from "../lib/api";
 import "./css/reply.css";
 import { MdDeleteForever } from 'react-icons/md';
+import { userContext } from "../store/context";
 
 const Reply = ({ boardId }) => {
+    const { userId: id } = useContext(userContext);
     const [replyList, setReplyList] = useState([]);
 
     const [reply, setReply] = useState("");
@@ -27,13 +29,13 @@ const Reply = ({ boardId }) => {
             alert("please write reply");
             return;
         }
-        await addReply({ index: replyIndex, boardId, reply });
+        await addReply({ boardId, index: replyIndex, userId: id, reply });
         setReplyList(replyList => [...replyList, {
-            index: replyIndex, reply, nestedReplies: []
+            index: replyIndex, userId: id, reply, nestedReplies: []
         }])
         setReplyIndex(replyIndex => replyIndex + 1);
         setReply("");
-    }, [boardId, reply, replyIndex]);
+    }, [boardId, reply, replyIndex, id]);
 
     const deleteOne = async (data) => {
         await deleteOneReply(data);
@@ -49,9 +51,15 @@ const Reply = ({ boardId }) => {
                     {replyList.map(value =>
                         <div key={value.index}>
                             {value.reply}
-                            <div className="remove-Icon">
-                                <MdDeleteForever onClick={() => deleteOne({ boardId, index: value.index })}>delete</MdDeleteForever>
+                            <div className="userId">
+                                {value.userId === "" ? "NONE" : value.userId}
                             </div>
+                            {
+                                value.userId === id ?
+                                    <div className="remove-Icon">
+                                        <MdDeleteForever onClick={() => deleteOne({ boardId, index: value.index })}>delete</MdDeleteForever>
+                                    </div> : null
+                            }
                             <hr />
                         </div>
                     )}

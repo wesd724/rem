@@ -18,6 +18,7 @@ export const newReply = boardId => {
         replies: [
             {
                 "index": 1,
+                "id": user login id,
                 "reply": "asdasd",
                 nestedReplies: [
                     "first",
@@ -27,6 +28,7 @@ export const newReply = boardId => {
             },
             {
                 "index": 2,
+                "id": user login id,
                 "reply": "two",
                 nestedReplies: [
                     "one",
@@ -43,6 +45,7 @@ export const newReply = boardId => {
         replies: [
             {
                 "index": 1,
+                "id": user login id,
                 "reply": "asdasd",
                 nestedReplies: [
                     "first",
@@ -52,6 +55,7 @@ export const newReply = boardId => {
             },
             {
                 "index": 2,
+                "id": user login id,
                 "reply": "two",
                 nestedReplies: [
                     "one",
