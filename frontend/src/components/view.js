@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { deleteData, deleteReply, updateData } from "../lib/api";
-import { userContext } from "../store/context";
 import "./css/view.css"
 import Recommend from "./recommend";
 import Reply from "./reply";
@@ -30,7 +29,7 @@ const deleted = async (id, history) => {
 }
 
 const View = ({ location, match, history }) => {
-    const { userId } = useContext(userContext);
+    const userId = sessionStorage.getItem("id");
     const { _id, id, title, text, view } = location.state;
     const { number: n } = match.params;
     return (

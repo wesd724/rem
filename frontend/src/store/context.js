@@ -2,21 +2,16 @@ import React, { createContext, useState } from "react";
 
 export const userContext = createContext({
     page: 1,
-    setPage: () => { },
-    userId: "",
-    setUserId: () => { }
+    setPage: () => { }
 })
 
 const ContextStore = ({ children }) => {
     const [page, setPage] = useState(1);
-    const [userId, setUserId] = useState("");
 
     return (
         <userContext.Provider value={{
             page,
-            setPage,
-            userId,
-            setUserId
+            setPage
         }}>{children}</userContext.Provider>
     )
 }

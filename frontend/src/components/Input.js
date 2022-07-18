@@ -6,7 +6,8 @@ import { LIST_LENGTH_PER_PAGE } from "../data/constant";
 import { userContext } from "../store/context";
 
 const InputForm = () => {
-    const { page, setPage, userId } = useContext(userContext);
+    const userId = sessionStorage.getItem("id");
+    const { page, setPage } = useContext(userContext);
     const [data, setData] = useState({
         id: userId,
         title: "",
@@ -25,11 +26,9 @@ const InputForm = () => {
     }, []);
 
     useEffect(() => {
-        console.log(`Input useEffect post("/read") call rendering`);
         readData(page).then(res => {
             if (res.data.result.length === 0 && res.data.length > 0) {
                 readData(page - 1).then(res => {
-                    console.log(`no text in page ${page}`);
                     setListLength(res.data.length);
                     setList([...res.data.result]);
                     setPage(page - 1);
@@ -62,11 +61,16 @@ const InputForm = () => {
         setPage(page);
     }, [setPage]);
 
+    const logout = () => {
+        sessionStorage.removeItem("id");
+        window.location.replace("/");
+    }
+
     return (
         <div className="form">
             <div>
                 <b>ID: {id}</b><br />
-                <button className="logout" onClick={() => window.location.replace("/")}>LOGOUT</button>
+                <button className="logout" onClick={logout}>LOGOUT</button>
             </div>
             <div>
                 <b>TITLE</b><br />
