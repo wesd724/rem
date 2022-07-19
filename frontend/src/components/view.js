@@ -33,13 +33,13 @@ const View = ({ location, match, history }) => {
     const { _id, id, title, text, view } = location.state;
     const { number: n } = match.params;
     return (
-        <div>
-            <div className="view">
+        <div className="view">
+            <div>
                 <div>
                     post {n}
-                </div>
-                <div className="view-count">
-                    views: {view + 1}
+                    <div className="view-count">
+                        views: {view + 1}
+                    </div>
                 </div>
                 <hr className="view-boundary" />
                 <div>
@@ -53,7 +53,7 @@ const View = ({ location, match, history }) => {
                 <div className="view-text">
                     {text}
                 </div>
-                <button onClick={() => history.goBack()}>BACK</button>
+                <button className="back-button" onClick={() => history.goBack()}>BACK</button>
                 {
                     userId === id ?
                         <div className="private-button">

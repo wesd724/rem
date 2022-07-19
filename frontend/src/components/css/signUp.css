@@ -1,5 +1,12 @@
 .sign-up {
-    position: absolute;
-    top: 100px;
-    left: 200px;
+    position: relative;
+    bottom: 15vw;
+}
+
+.sign-up .button {
+    background-color: #C9CCD5;
+    position: relative;
+    top: 10px;
+    left: 5px;
+    padding: 5px 50px;
 }

@@ -28,18 +28,14 @@ const Recommend = ({ _id }) => {
     return (
         <div className="good-bad">
             <div className="good">
-                <div className="good-icon" onClick={increaseGoodPoint}>
-                    <IoMdThumbsUp />
-                </div>
-                <div className="good-count">
+                <IoMdThumbsUp onClick={increaseGoodPoint} />
+                <div>
                     {goodPoint}
                 </div>
             </div>
             <div className="bad">
-                <div className="bad-icon" onClick={increaseBadPoint}>
-                    <IoMdThumbsDown />
-                </div>
-                <div className="bad-count">
+                <IoMdThumbsDown onClick={increaseBadPoint} />
+                <div>
                     {badPoint}
                 </div>
             </div>

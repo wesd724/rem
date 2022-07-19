@@ -69,16 +69,16 @@ const InputForm = () => {
         <div className="form">
             <div>
                 <b>ID: {id}</b><br />
-                <button className="logout" onClick={logout}>LOGOUT</button>
+                <button className="logout-button" onClick={logout}>LOGOUT</button>
             </div>
             <div>
                 <b>TITLE</b><br />
-                <input className="title" name="title" onChange={change} value={title} ref={element} ></input>
+                <input className="title" name="title" onChange={change} value={title} maxLength="18" ref={element} ></input>
             </div>
             <div>
                 <b>TEXT</b><br />
                 <textarea className="textarea" name="text" onChange={change} value={text}></textarea>
-                <button className="textbutton" onClick={click}>WRITE</button>
+                <button className="write-button" onClick={click}>WRITE</button>
             </div>
             <List lists={list} />
             <ul className="pages">

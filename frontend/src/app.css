@@ -1,3 +1,11 @@
 html {
-    background-color: #D5BFBF;
+    background-color: #DCD7C9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+button {
+    border: none;
 }

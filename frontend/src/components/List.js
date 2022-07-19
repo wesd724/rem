@@ -29,7 +29,7 @@ const List = ({ lists }) => {
                                     text: value.text,
                                     view: value.view
                                 }
-                            }}><button onClick={() => addViews({ _id: value._id })}>DETAIL</button></Link></td>
+                            }}><button className="detail-button" onClick={() => addViews({ _id: value._id })}>DETAIL</button></Link></td>
                         </tr>
                     )}
                 </tbody>

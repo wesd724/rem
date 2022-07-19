@@ -1,5 +1,32 @@
 .login {
-    position: absolute;
-    top: 100px;
-    left: 200px;
+    position: relative;
+    bottom: 15vw;
+}
+
+.login .button {
+    padding: 10px;
+}
+
+.login .login-button {
+    background-color: #71C9CE;
+    color: black;
+    position: relative;
+    left: 170px;
+    bottom: 40px;
+}
+
+.login .signup-button {
+    background-color: #93B5C6;
+    position: relative;
+    left: 0px;
+    bottom: 30px;
+}
+
+.login .anonymous-button {
+    color: skyblue;
+    background-color: #252A34;
+    position: relative;
+    width: 90px;
+    left: 5px;
+    bottom: 30px;
 }

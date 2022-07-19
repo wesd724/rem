@@ -42,27 +42,25 @@ const Reply = ({ boardId }) => {
     }
 
     return (
-        <div>
-            <div className="reply">
-                <textarea onChange={change} value={reply}></textarea>
-                <p onClick={click}>reply</p>
-                <div className="reply-list">
-                    {replyList.map(value =>
-                        <div key={value.index}>
-                            {value.reply}
-                            <div className="userId">
-                                {value.userId === "--" ? "NONE" : value.userId}
-                            </div>
-                            {
-                                value.userId === userId ?
-                                    <div className="remove-Icon">
-                                        <MdDeleteForever onClick={() => deleteOne({ boardId, index: value.index })}>delete</MdDeleteForever>
-                                    </div> : null
-                            }
-                            <hr />
+        <div className="reply">
+            <textarea onChange={change} value={reply}></textarea>
+            <p onClick={click}>reply</p>
+            <div className="reply-list">
+                {replyList.map(value =>
+                    <div key={value.index}>
+                        {value.reply}
+                        <div className="userId">
+                            {value.userId === "--" ? "NONE" : value.userId}
                         </div>
-                    )}
-                </div>
+                        {
+                            value.userId === userId ?
+                                <div className="remove-Icon">
+                                    <MdDeleteForever onClick={() => deleteOne({ boardId, index: value.index })}>delete</MdDeleteForever>
+                                </div> : null
+                        }
+                        <hr className="reply-boundary" />
+                    </div>
+                )}
             </div>
         </div>
     )

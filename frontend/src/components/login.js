@@ -28,14 +28,14 @@ const Login = () => {
 
     return (
         <div className="login">
-            <h3>LOGIN</h3>
+            <h3 style={{marginLeft: "50px"}}>LOGIN</h3>
             <form onSubmit={submit}>
-                <input type="text" placeholder="ID" onChange={changeId} required></input><br />
-                <input type="password" placeholder="PASSWORD" onChange={changePassword} required></input><br />
-                <button type="submit">login</button>
+                <input style={{width: "150px"}} type="text" placeholder="ID" onChange={changeId} required></input><br />
+                <input style={{width: "150px"}} type="password" placeholder="PASSWORD" onChange={changePassword} required></input><br />
+                <button className="button login-button" type="submit">login</button>
             </form>
-            <Link to='/register'><button>sign up</button></Link>
-            <button onClick={() => {
+            <Link to='/register'><button className="button signup-button">sign up</button></Link>
+            <button className="button anonymous-button" onClick={() => {
                 sessionStorage.setItem("id", "--");
                 history.push('/board');
             }}>anonymous</button>

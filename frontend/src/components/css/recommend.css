@@ -1,37 +1,19 @@
 .good-bad {
     position: relative;
-    top: 470px;
-    left: 330px;
-    font-size: 40px;
+    top: 18vh;
+    left: 10vw;
+    font-size: 5vmin;
 }
 
 .good {
-    position: absolute;
     color: slateblue;
-}
-
-.good-icon {
     position: absolute;
-}
-
-.good-count {
-    position: absolute;
-    top:-5px;
-    right: 10px;
+    top: -3vh;
 }
 
 .bad {
-    position: absolute;
     color: tomato;
-}
-
-.bad-icon {
     position: absolute;
-    left:80px;
-}
-
-.bad-count {
-    position: absolute;
-    top: -7px;
-    left: 130px;
+    top: -3vh;
+    left: 10vw;
 }

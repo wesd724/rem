@@ -48,12 +48,12 @@ const SignUp = ({ history }) => {
 
     return (
         <div className="sign-up">
-            <h3>SIGN UP</h3>
-            <input type="text" name="id" onChange={change} placeholder="YOUR OWN ID"></input><br />
+            <h3 style={{marginLeft: "50px"}}>SIGN UP</h3>
+            <input type="text" name="id" onChange={change} maxLength="15" placeholder="YOUR OWN ID 15 LENGTH"></input><br />
             <input type="password" name="password" onChange={change} placeholder="YOUR PASSWORD"></input><br />
             <input type="password" name="pwdconfirm" onChange={confirmChange} placeholder="PASSWORD CONFIRM"></input><br />
             <input type="email" name="email" onChange={change} placeholder="YOUR EMAIL"></input><br />
-            <button onClick={click}>REGISTER</button>
+            <button className="button" onClick={click}>REGISTER</button>
         </div>
     )
 }
