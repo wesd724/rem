@@ -1,38 +1,49 @@
 .reply {
     position: relative;
-    top: 30vh;
+    top: 33vh;
 }
 
 .reply textarea {
     resize: none;
     position:relative;
-    width: 24vw;
+    width: 32vmax;
     height: 7vh;
 }
 
-.reply p {
+.reply .add-reply {
     position: relative;
     text-align: center;
-    font-size: 2vmin;
-    width: 7vw;
-    height: 5vh;
-    bottom: 9.5vh;
-    left: 26vw;
+    font-size: 2vmax;
+    width: 6vmax;
+    height: 7vh;
+    bottom: 10.3vh;
+    left: 34vmax;
     border: 2px solid black;
     line-height: 2.3;
 }
 
 .reply-list {
     position: relative;
-    word-break: break-all;
     bottom: 6vh;
-    width: 32vw;
+    width: 39vmax;
     padding: 3px;
     border: 2px solid rgb(94, 72, 72);
 }
 
-.reply-list .userId {
+.reply-list .reply {
+    position: relative;
+    width: 33vmax;
+    top: 0px;
     font-size: 15px;
+}
+
+.reply-list > div {
+    position: relative;
+    word-break: break-all;
+}
+
+.reply-list .userId {
+    font-size: 12px;
     padding-top: 5px;
     color: #7a6464;
 }
@@ -47,7 +58,7 @@
 
 .reply-list .reply-boundary {
     border: 1px solid gray;
-    width: 32vw;
+    width: 39vmax;
     margin-bottom: 2px;
     margin-left: -3px;
 }

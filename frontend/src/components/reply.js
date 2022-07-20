@@ -44,11 +44,12 @@ const Reply = ({ boardId }) => {
     return (
         <div className="reply">
             <textarea onChange={change} value={reply}></textarea>
-            <p onClick={click}>reply</p>
+            <p className="add-reply" onClick={click}>add</p>
             <div className="reply-list">
                 {replyList.map(value =>
                     <div key={value.index}>
-                        {value.reply}
+                        <div className="reply">
+                            {value.reply}</div>
                         <div className="userId">
                             {value.userId === "--" ? "NONE" : value.userId}
                         </div>

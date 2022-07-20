@@ -48,7 +48,7 @@ const SignUp = ({ history }) => {
 
     return (
         <div className="sign-up">
-            <h3 style={{marginLeft: "50px"}}>SIGN UP</h3>
+            <h3 style={{marginLeft: "90px"}}>SIGN UP</h3>
             <input type="text" name="id" onChange={change} maxLength="15" placeholder="YOUR OWN ID 15 LENGTH"></input><br />
             <input type="password" name="password" onChange={change} placeholder="YOUR PASSWORD"></input><br />
             <input type="password" name="pwdconfirm" onChange={confirmChange} placeholder="PASSWORD CONFIRM"></input><br />

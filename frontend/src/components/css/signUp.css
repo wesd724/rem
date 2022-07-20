@@ -1,12 +1,22 @@
 .sign-up {
     position: relative;
-    bottom: 15vw;
+    bottom: 10vw;
+}
+
+.sign-up h3 {
+    font-size: 30px;
+}
+
+.sign-up input {
+    width: 300px;
+    height: 40px;
+    margin: 5px;
 }
 
 .sign-up .button {
     background-color: #C9CCD5;
     position: relative;
-    top: 10px;
-    left: 5px;
-    padding: 5px 50px;
+    top: 13px;
+    left: 23px;
+    padding: 10px 100px;
 }

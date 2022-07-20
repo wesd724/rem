@@ -1,15 +1,17 @@
 table {
+    position: relative;
     border: 3px solid #614124;
     table-layout: fixed;
     border-collapse: collapse;
-    width: 50vmin;
-    height: 30vmin;
+    width: 90vw;
+    height: 30vh;
+    left: 2vw;
 }
 
 th, td {
     border: 1px solid #A25B5B;
     padding: 0px;
-    font-size: 2vmin;
+    font-size: 16px;
 }
 
 th {
@@ -25,8 +27,8 @@ td {
 .detail-button {
     color: white;
     background-color: #809A6F;
-    width: 12vmin;
-    height: 5vmin;
+    width: 25vw;
+    height: 5vh;
     padding: 0;
 }
 
@@ -39,5 +41,5 @@ td:nth-child(2) {
 }
 
 td:nth-child(3) {
-    max-width: 20vw;
+    max-width: 30vw;
 }

@@ -1,19 +1,17 @@
 .good-bad {
-    position: relative;
-    top: 18vh;
-    left: 10vw;
-    font-size: 5vmin;
+    position: absolute;
+    top: 63vh;
+    left: 13vmax;
+    font-size: 30px;
 }
 
 .good {
     color: slateblue;
     position: absolute;
-    top: -3vh;
 }
 
 .bad {
     color: tomato;
     position: absolute;
-    top: -3vh;
-    left: 10vw;
+    left: 11vmax;
 }

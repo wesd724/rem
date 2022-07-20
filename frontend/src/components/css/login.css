@@ -1,6 +1,17 @@
 .login {
     position: relative;
-    bottom: 15vw;
+    right: 2.5vw;
+    bottom: 10vw;
+}
+
+.login h3 {
+    font-size: 25px;
+}
+
+.login input {
+    width: 200px;
+    height: 30px;
+    margin: 3px;
 }
 
 .login .button {
@@ -11,14 +22,14 @@
     background-color: #71C9CE;
     color: black;
     position: relative;
-    left: 170px;
-    bottom: 40px;
+    left: 220px;
+    bottom: 60px;
 }
 
 .login .signup-button {
     background-color: #93B5C6;
     position: relative;
-    left: 0px;
+    left: 15px;
     bottom: 30px;
 }
 
@@ -27,6 +38,6 @@
     background-color: #252A34;
     position: relative;
     width: 90px;
-    left: 5px;
+    left: 40px;
     bottom: 30px;
 }

@@ -1,21 +1,21 @@
 .title {
-    width: 7vmax;
+    width: 25vmax;
     border: 1px solid teal;
 }
 
 .textarea {
     resize: none;
-    width: 25vmin;
-    height: 8vmin;
+    width: 40vmax;
+    height: 8vmax;
 }
 
 .logout-button {
     background-color: darkgrey;
-    position: relative;
+    position: fixed;
+    top: 35px;
     width: 95px;
-    left: 35vw;
-    bottom: 4.5vh;
-    padding: 5px 20px;
+    right: 20px;
+    padding: 7px 20px;
 }
 
 .write-button {
@@ -23,7 +23,8 @@
     position: relative;
     left: 5px;
     bottom: 10px;
-    padding: 5px 20px;
+    padding: 5px 30px;
+    margin-top: 10px;
 }
 
 .pages {
@@ -36,9 +37,9 @@
     list-style: none;
     border: 1px solid black;
     background-color: cadetblue;
-    height: 3vmin;
-    width: 5vmin;
-    margin: 1vmin;
-    font-size: 2.5vmin;
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+    font-size: 13px;
     color: rgb(39, 46, 46);
 }

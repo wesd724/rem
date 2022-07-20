@@ -1,7 +1,7 @@
 .view {
     position: relative;
-    width: 33vw;
-    height: 57vh; 
+    width: 40vmax;
+    height: 58vh; 
     border: 3px solid teal;
 }
 
@@ -18,14 +18,15 @@
 .view-text {
     position: relative;
     word-break: break-all;
-    height: 35vh;
-    font-size: 3vmin;
+    height: 32vh;
+    font-size: 15px;
+    overflow: auto;
 }
 
 .view-text > textarea {
     resize: none;
-    width: 32vw;
-    height: 40vh;
+    width: 39vmax;
+    height: 43vh;
     border: 2px solid rgb(99, 110, 110);
 }
 
