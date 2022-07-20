@@ -2,22 +2,22 @@ import axios from "axios";
 import { LIST_LENGTH_PER_PAGE as length } from "../data/constant";
 
 export const createData = data => {
-    return axios.post(process.env.REACT_APP_URL, data);
+    return axios.post(process.env.REACT_APP_URL + "/create", data);
 }
 
 export const readData = page => {
-    return axios.get(process.env.REACT_APP_URL + `/${page}`, {
+    return axios.get(process.env.REACT_APP_URL + `/read/${page}`, {
         params:
             { length }
     });
 }
 
 export const updateData = data => {
-    return axios.put(process.env.REACT_APP_URL, data);
+    return axios.put(process.env.REACT_APP_URL + "/update", data);
 }
 
 export const deleteData = id => {
-    return axios.delete(process.env.REACT_APP_URL, {
+    return axios.delete(process.env.REACT_APP_URL + "/delete", {
         data: {
             _id: id
         }

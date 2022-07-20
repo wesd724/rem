@@ -3,20 +3,20 @@ import { addViews } from '../mongodb/view/addViews.js';
 import { readRecommend } from '../mongodb/view/readRecommend.js';
 import { recommend } from '../mongodb/view/recommend.js';
 
-const viewRouter = express.Router();
+const infoRouter = express.Router();
 
-viewRouter.post("/views", (req, res) => {
+infoRouter.post("/views", (req, res) => {
     addViews(req.body._id);
     res.send("add views");
 })
 
-viewRouter.put("/recommend", (req, res) => {
+infoRouter.put("/recommend", (req, res) => {
     recommend(req.body);
     res.send("recommend");
 })
 
-viewRouter.post("/readrecommend", (req, res) => {
+infoRouter.post("/readrecommend", (req, res) => {
     readRecommend(req.body._id).then(response => res.send(response));
 })
 
-export default viewRouter;
+export default infoRouter;
