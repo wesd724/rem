@@ -5,7 +5,12 @@ import { MdDeleteForever } from 'react-icons/md';
 
 const Reply = ({ boardId }) => {
     const userId = sessionStorage.getItem("id");
-    const [replyList, setReplyList] = useState([]);
+    const [replyList, setReplyList] = useState([{
+        index: 0,
+        id: "",
+        reply: "",
+        nestedReplies: []
+    }]);
 
     const [reply, setReply] = useState("");
 
@@ -29,7 +34,7 @@ const Reply = ({ boardId }) => {
 
     const click = useCallback(async () => {
         if (reply === "") {
-            alert("please write reply");
+            alert("please fill in the reply");
             return;
         }
         await addReply({ boardId, index: replyIndex, userId, reply });

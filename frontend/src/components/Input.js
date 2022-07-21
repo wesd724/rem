@@ -19,6 +19,8 @@ const InputForm = () => {
     const [listLength, setListLength] = useState(0);
     const element = useRef();
 
+    const { id, title, text } = data;
+
     const change = useCallback(e => {
         setData(data => {
             return { ...data, [e.target.name]: e.target.value };
@@ -40,9 +42,11 @@ const InputForm = () => {
         });
     }, [page, setPage])
 
-    const { id, title, text } = data;
-
     const click = useCallback(async () => {
+        if (data.title === "" || data.text === "") {
+            alert("please fill in the blank");
+            return;
+        }
         await createData(data);
         const { result: readList } = await readData(1).then(res => res.data);
         setList([...readList]);
