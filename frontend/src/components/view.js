@@ -1,7 +1,6 @@
 import React from "react";
 import { deleteData, deleteReply, updateData } from "../lib/api";
 import "./css/view.css"
-import Recommend from "./recommend";
 import Reply from "./reply";
 
 const update = async (e, id) => {
@@ -62,7 +61,6 @@ const View = ({ location, match, history }) => {
                         </div> : null
                 }
             </div>
-            <Recommend _id={_id} />
             <Reply boardId={_id} />
         </div>
     )

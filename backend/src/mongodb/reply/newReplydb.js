@@ -7,7 +7,9 @@ export const newReply = boardId => {
         const db = connection.db(process.env.DB_NAME);
         const replyCollection = db.collection('reply');
 
-        await replyCollection.insertOne({ boardId, replies: [] });
+        const result = await replyCollection.find({ boardId }).toArray();
+        if(result.length === 0) await replyCollection.insertOne({ boardId, replies: [] });
+        else return;
     })
 }
 /*

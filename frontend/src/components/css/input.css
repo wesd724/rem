@@ -1,9 +1,18 @@
+.form b {
+    position: relative;
+    left: 2vw;
+}
+
 .title {
+    position: relative;
+    left: 2vw;
     width: 25vmax;
     border: 1px solid teal;
 }
 
 .textarea {
+    position: relative;
+    left: 2vw;
     resize: none;
     width: 40vmax;
     height: 8vmax;
@@ -21,7 +30,7 @@
 .write-button {
     background-color: #73A9AD;
     position: relative;
-    left: 5px;
+    left: 3vw;
     bottom: 10px;
     padding: 5px 30px;
     margin-top: 10px;

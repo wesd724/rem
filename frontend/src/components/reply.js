@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { addReply, deleteOneReply, readReply } from "../lib/api";
+import { addReply, deleteOneReply, newReply, readReply } from "../lib/api";
 import "./css/reply.css";
 import { MdDeleteForever } from 'react-icons/md';
 
@@ -12,11 +12,15 @@ const Reply = ({ boardId }) => {
     const [replyIndex, setReplyIndex] = useState(0);
 
     useEffect(() => {
-        readReply(boardId).then(res => {
-            setReplyList(res.data.replies);
-            if (res.data.replies.length === 0) setReplyIndex(1);
-            else setReplyIndex(res.data.replies.at(-1).index + 1);
-        });
+        const boardRely = async () => {
+            await newReply({ boardId });
+            readReply(boardId).then(res => {
+                setReplyList(res.data.replies);
+                if (res.data.replies.length === 0) setReplyIndex(1);
+                else setReplyIndex(res.data.replies.at(-1).index + 1);
+            });
+        }
+        boardRely();
     }, [boardId]);
 
     const change = useCallback(e => {
@@ -44,7 +48,9 @@ const Reply = ({ boardId }) => {
     return (
         <div className="reply">
             <textarea onChange={change} value={reply}></textarea>
-            <p className="add-reply" onClick={click}>add</p>
+            <p className="add-reply" onClick={click}>
+                <b>reply</b>
+            </p>
             <div className="reply-list">
                 {replyList.map(value =>
                     <div key={value.index}>

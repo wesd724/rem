@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import List from "./List";
-import { createData, newReply, readData } from "../lib/api";
+import { createData, readData } from "../lib/api";
 import "./css/input.css";
 import { LIST_LENGTH_PER_PAGE } from "../data/constant";
 import { userContext } from "../store/context";
@@ -45,8 +45,6 @@ const InputForm = () => {
     const click = useCallback(async () => {
         await createData(data);
         const { result: readList } = await readData(1).then(res => res.data);
-        const createDataObjectId = readList[0]["_id"];
-        await newReply({ _id: createDataObjectId });
         setList([...readList]);
         setData({ ...data, title: "", text: "" });
         setListLength(l => l + 1);

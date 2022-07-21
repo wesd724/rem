@@ -12,7 +12,7 @@ replyRouter.get("/", (req, res) => {
 })
 
 replyRouter.post("/new", (req, res) => {
-    newReply(req.body._id);
+    newReply(req.body.boardId);
     res.send('create new reply');
 })
 
