@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connect = () => MongoClient.connect(process.env.DB_URL);
+const client = new MongoClient(process.env.DB_URL);
+const c = client.connect();
 
-export default connect;
+export default c;

@@ -1,9 +1,9 @@
-import connect from "../connect.js"
+import c from "../connect.js"
 import dotenv from "dotenv";
 dotenv.config();
 
 export const login = async ({ id, password }) => {
-    return await connect().then(async (connection) => {
+    return await c.then(async (connection) => {
         const db = connection.db(process.env.DB_NAME);
         const accountCollection = db.collection('account');
 
