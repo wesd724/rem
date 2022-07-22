@@ -3,24 +3,24 @@
     top: 18vh;
 }
 
-.reply textarea {
-    resize: none;
+.reply .textarea {
     position:relative;
+    left: 0px;
     width: 40vmax;
 }
 
 .reply .add-reply {
     position: absolute;
     display: inline-block;
-    right: -5px;
-    top: 22px;
-    padding: 1px 3vw;
-    border: 2px solid black;
+    right: -2px;
+    top: 61px;
+    font-size: 12px;
+    height: 25px;
 }
 
 .reply-list {
     position: relative;
-    bottom: -6vh;
+    bottom: -11vh;
     width: 40vmax;
     padding: 3px;
     border: 2px solid rgb(94, 72, 72);

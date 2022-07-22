@@ -1,5 +1,5 @@
 html {
-    background-color: #DCD7C9;
+    background-color: #E7EBF0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,4 +8,8 @@ html {
 
 button {
     border: none;
+}
+
+a {
+    text-decoration: none;
 }

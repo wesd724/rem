@@ -4,6 +4,7 @@ import { createData, readData } from "../lib/api";
 import "./css/input.css";
 import { LIST_LENGTH_PER_PAGE } from "../data/constant";
 import { userContext } from "../store/context";
+import { Button, TextField } from "@mui/material";
 
 const InputForm = () => {
     const userId = sessionStorage.getItem("id");
@@ -70,25 +71,33 @@ const InputForm = () => {
     return (
         <div className="form">
             <div>
-                <b>ID: {id}</b><br />
-                <button className="logout-button" onClick={logout}>LOGOUT</button>
+                <Button style={{ position: "fixed" }} className="logout-button" onClick={logout} variant="outlined" color="error">LOGOUT</Button>
             </div>
             <div>
-                <b>TITLE</b><br />
-                <input className="title" name="title" onChange={change} value={title} maxLength="18" ref={element} ></input>
+                <TextField size="small" inputProps={{ maxLength: 18 }} name="title" className="title" id="filled-basic" label="TITLE" variant="filled" value={title} onChange={change} />
             </div>
             <div>
-                <b>TEXT</b><br />
-                <textarea className="textarea" name="text" onChange={change} value={text}></textarea>
-                <button className="write-button" onClick={click}>WRITE</button>
+                <TextField
+                    size="small"
+                    className="textarea"
+                    name="text"
+                    id="outlined-multiline-flexible"
+                    label="TEXT"
+                    multiline
+                    maxRows={2}
+                    value={text}
+                    onChange={change}
+                />
+                <Button className="write-button" onClick={click} variant="outlined">WRITE</Button>
             </div>
             <List lists={list} />
             <ul className="pages">
                 {Array.from({ length: Math.ceil(listLength / LIST_LENGTH_PER_PAGE) })
                     .map((_, index) =>
-                        <li key={index} onClick={() => readPage(index + 1)}>{index + 1}</li>
+                        <Button sx={{ minWidth: 40, bgcolor: "#9CB4CC", color: "black" }} className="page-btn" variant="contained" key={index} onClick={() => readPage(index + 1)}>{index + 1}</Button>
                     )}
             </ul>
+            <b>ID: {id}</b><br />
         </div>
     )
 }

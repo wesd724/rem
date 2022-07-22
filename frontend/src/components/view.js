@@ -1,4 +1,6 @@
+import { Button } from "@mui/material";
 import React from "react";
+import { MdArrowBack, MdDeleteOutline, MdEdit } from "react-icons/md";
 import { deleteData, deleteReply, updateData } from "../lib/api";
 import "./css/view.css"
 import Reply from "./reply";
@@ -52,12 +54,12 @@ const View = ({ location, match, history }) => {
                 <div className="view-text">
                     {text}
                 </div>
-                <button className="back-button" onClick={() => history.goBack()}>BACK</button>
+                <Button style={{ position: "absolute", fontWeight: "bold" }} startIcon={<MdArrowBack />} className="back-button" onClick={() => history.goBack()}>BACK</Button>
                 {
                     userId === id ?
                         <div className="private-button">
-                            <button onClick={e => update(e, _id)}>UPDATE</button>
-                            <button onClick={() => deleted(_id, history)}>DELETE</button>
+                            <Button variant="contained" startIcon={<MdEdit />} onClick={e => update(e, _id)}>UPDATE</Button>
+                            <Button variant="contained" startIcon={<MdDeleteOutline />} onClick={() => deleted(_id, history)}>DELETE</Button>
                         </div> : null
                 }
             </div>

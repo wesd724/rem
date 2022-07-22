@@ -23,14 +23,14 @@
     color: black;
     position: relative;
     left: 220px;
-    bottom: 60px;
+    bottom: 70px;
 }
 
 .login .signup-button {
     background-color: #93B5C6;
     position: relative;
     left: 15px;
-    bottom: 30px;
+    bottom: 35px;
 }
 
 .login .anonymous-button {
@@ -39,5 +39,17 @@
     position: relative;
     width: 90px;
     left: 40px;
-    bottom: 30px;
+    bottom: 35px;
+}
+
+.eye {
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    right: 82px;
+    bottom: 37px;
+}
+
+.eye:hover {
+    color: red;
 }

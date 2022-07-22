@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { addReply, deleteOneReply, newReply, readReply } from "../lib/api";
 import "./css/reply.css";
 import { MdDeleteForever } from 'react-icons/md';
+import { Button, TextField } from "@mui/material";
 
 const Reply = ({ boardId }) => {
     const userId = sessionStorage.getItem("id");
     const [replyList, setReplyList] = useState([{
         index: 0,
-        id: "",
+        userId: "",
         reply: "",
         nestedReplies: []
     }]);
@@ -52,10 +53,8 @@ const Reply = ({ boardId }) => {
 
     return (
         <div className="reply">
-            <textarea onChange={change} value={reply}></textarea>
-            <p className="add-reply" onClick={click}>
-                <b>reply</b>
-            </p>
+            <TextField onChange={change} value={reply} className="textarea" label="reply" variant="standard" />
+            <Button className="add-reply" size="small" onClick={click} variant="outlined">WRITE</Button>
             <div className="reply-list">
                 {replyList.map(value =>
                     <div key={value.index}>
@@ -67,7 +66,7 @@ const Reply = ({ boardId }) => {
                         {
                             value.userId === userId ?
                                 <div className="remove-Icon">
-                                    <MdDeleteForever onClick={() => deleteOne({ boardId, index: value.index })}>delete</MdDeleteForever>
+                                    <MdDeleteForever onClick={() => deleteOne({ boardId, index: value.index })} />
                                 </div> : null
                         }
                         <hr className="reply-boundary" />
