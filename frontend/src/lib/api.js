@@ -60,6 +60,10 @@ export const addViews = data => {
     return axios.post(process.env.REACT_APP_VIEWS_URL, data);
 }
 
+export const readViewText = data => {
+    return axios.post(process.env.REACT_APP_READ_VIEW_TEXT_URL, data);
+}
+
 export const recommend = data => {
     return axios.put(process.env.REACT_APP_RECOMMEND_URL, data);
 }

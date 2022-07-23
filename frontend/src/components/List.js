@@ -35,7 +35,6 @@ const List = ({ lists }) => {
                                         _id: value._id,
                                         id: value.id,
                                         title: value.title,
-                                        text: value.text,
                                         view: value.view
                                     }
                                 }}>

@@ -1,27 +1,9 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { MdArrowBack, MdDeleteOutline, MdEdit } from "react-icons/md";
-import { deleteData, deleteReply, updateData } from "../lib/api";
+import { deleteData, deleteReply, readViewText, updateData } from "../lib/api";
 import "./css/view.css"
 import Reply from "./reply";
-
-const update = async (e, id) => {
-    const currentElement = e.target;
-    const textElement = e.target.parentNode.previousSibling.previousSibling;
-    const beforeText = textElement.textContent;
-    if (currentElement.textContent === 'UPDATE') {
-        currentElement.textContent = 'FINISH';
-        textElement.innerHTML = `<textarea>${beforeText}</textarea>`;
-    } else {
-        currentElement.textContent = 'UPDATE';
-        const changeText = {
-            _id: id,
-            text: textElement.children[0].value
-        }
-        await updateData(changeText);
-        textElement.innerHTML = `${changeText.text}`;
-    }
-}
 
 const deleted = async (id, history) => {
     await deleteData(id);
@@ -30,9 +12,35 @@ const deleted = async (id, history) => {
 }
 
 const View = ({ location, match, history }) => {
-    const userId = sessionStorage.getItem("id");
-    const { _id, id, title, text, view } = location.state;
+    const { _id, id, title, view } = location.state;
     const { number: n } = match.params;
+    const userId = sessionStorage.getItem("id");
+
+    const [viewText, setViewText] = useState("");
+
+    const [flag, setFlag] = useState(true);
+
+    const textChange = e => setViewText(e.target.value);
+
+    useEffect(() => {
+        readViewText({ _id }).then(res => setViewText(res.data.text));
+    }, [_id]);
+
+    const update = useCallback(async (e, id) => {
+        const currentElement = e.target;
+        setFlag(!flag);
+        if (currentElement.textContent === 'UPDATE') {
+            currentElement.textContent = 'FINISH';
+        } else {
+            currentElement.textContent = 'UPDATE';
+            const changeText = {
+                _id: id,
+                text: viewText
+            }
+            await updateData(changeText);
+        }
+    }, [flag, viewText]);
+
     return (
         <div className="view">
             <div>
@@ -52,7 +60,11 @@ const View = ({ location, match, history }) => {
                 </div>
                 <hr className="view-boundary" />
                 <div className="view-text">
-                    {text}
+                    {
+                        flag ?
+                            <div>{viewText}</div> :
+                            <textarea value={viewText} onChange={textChange} />
+                    }
                 </div>
                 <Button style={{ position: "absolute", fontWeight: "bold" }} startIcon={<MdArrowBack />} className="back-button" onClick={() => history.goBack()}>BACK</Button>
                 {
