@@ -33,11 +33,11 @@ const View = ({ location, match, history }) => {
             currentElement.textContent = 'FINISH';
         } else {
             currentElement.textContent = 'UPDATE';
-            const changeText = {
+            
+            await updateData({
                 _id: id,
                 text: viewText
-            }
-            await updateData(changeText);
+            });
         }
     }, [flag, viewText]);
 

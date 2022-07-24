@@ -4,6 +4,7 @@ import { deleteOneReply } from '../mongodb/reply/deleteOneReply.js';
 import { deleteReply } from '../mongodb/reply/deleteReplydb.js';
 import { newReply } from '../mongodb/reply/newReplydb.js';
 import { readReply } from '../mongodb/reply/readReplydb.js';
+import { updateOneReply } from '../mongodb/reply/updateOneReply.js';
 
 const replyRouter = express.Router();
 
@@ -31,7 +32,8 @@ replyRouter.delete("/deleteOne", (req, res) => {
     res.send('delete reply');
 })
 
-replyRouter.put("/", (req, res) => {
+replyRouter.put("/updateOne", (req, res) => {
+    updateOneReply(req.body);
     res.send('update reply');
 })
 

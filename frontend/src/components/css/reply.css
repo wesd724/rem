@@ -3,7 +3,7 @@
     top: 18vh;
 }
 
-.reply .textarea {
+.reply .text-input {
     position:relative;
     left: 0px;
     width: 40vmax;
@@ -28,9 +28,15 @@
 
 .reply-list .reply {
     position: relative;
-    width: 35vmax;
+    width: 32vmax;
     top: 0px;
     font-size: 15px;
+}
+
+.reply > textarea {
+    resize: none;
+    width: 28vmax;
+    border: 1px solid rgb(99, 110, 110);
 }
 
 .reply-list > div {
@@ -44,7 +50,15 @@
     color: #7a6464;
 }
 
-.reply-list .remove-Icon {
+.reply-list .update-icon {
+    position: absolute;
+    top: 1px;
+    right: 35px;
+    font-size: 1.5rem;
+    color: #2f31bb;
+}
+
+.reply-list .remove-icon {
     position: absolute;
     top: 1px;
     right: 5px;
