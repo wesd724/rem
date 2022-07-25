@@ -5,8 +5,10 @@ import { readRecommend, recommend } from "../lib/api";
 
 const Recommend = ({ _id }) => {
     const [goodPoint, setGoodPoint] = useState(0);
+    const [goodFlag, setGoodFlag] = useState(true);
 
     const [badPoint, setBadPoint] = useState(0);
+    const [badFlag, setBadFlag] = useState(true);
 
     useEffect(() => {
         readRecommend({ _id }).then(res => {
@@ -16,14 +18,20 @@ const Recommend = ({ _id }) => {
     }, [_id]);
 
     const increaseGoodPoint = useCallback(() => {
-        recommend({ _id, recommend: "good" });
-        setGoodPoint(good => good + 1);
-    }, [_id]);
+        if (goodFlag) {
+            recommend({ _id, recommend: "good" });
+            setGoodPoint(good => good + 1);
+            setGoodFlag(false);
+        }
+    }, [_id, goodFlag]);
 
     const increaseBadPoint = useCallback(() => {
-        recommend({ _id, recommend: "bad" });
-        setBadPoint(bad => bad + 1);
-    }, [_id]);
+        if (badFlag) {
+            recommend({ _id, recommend: "bad" });
+            setBadPoint(bad => bad + 1);
+            setBadFlag(false);
+        }
+    }, [_id, badFlag]);
 
     return (
         <div className="good-bad">

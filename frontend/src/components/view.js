@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import { MdArrowBack, MdDeleteOutline, MdEdit } from "react-icons/md";
-import { deleteData, deleteReply, readViewText, updateData } from "../lib/api";
+import { addViews, deleteData, deleteReply, readViewText, updateData } from "../lib/api";
 import "./css/view.css"
+import Recommend from "./recommend";
 import Reply from "./reply";
 
 const deleted = async (id, history) => {
@@ -12,18 +13,26 @@ const deleted = async (id, history) => {
 }
 
 const View = ({ location, match, history }) => {
-    const { _id, id, title, view } = location.state;
+    const { _id, id, title } = location.state;
     const { number: n } = match.params;
     const userId = sessionStorage.getItem("id");
 
     const [viewText, setViewText] = useState("");
+    const [view, setView] = useState(null);
 
     const [flag, setFlag] = useState(true);
 
     const textChange = e => setViewText(e.target.value);
 
     useEffect(() => {
-        readViewText({ _id }).then(res => setViewText(res.data.text));
+        const viewAndText = async () => {
+            await addViews({ _id });
+            readViewText({ _id }).then(res => {
+                setViewText(res.data.text);
+                setView(res.data.view);
+            });
+        }
+        viewAndText();
     }, [_id]);
 
     const update = useCallback(async (e, id) => {
@@ -33,7 +42,7 @@ const View = ({ location, match, history }) => {
             currentElement.textContent = 'FINISH';
         } else {
             currentElement.textContent = 'UPDATE';
-            
+
             await updateData({
                 _id: id,
                 text: viewText
@@ -75,6 +84,7 @@ const View = ({ location, match, history }) => {
                         </div> : null
                 }
             </div>
+            <Recommend _id={_id} />
             <Reply boardId={_id} />
         </div>
     )

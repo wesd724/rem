@@ -22,7 +22,7 @@ const Reply = ({ boardId }) => {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
-        const boardRely = async () => {
+        const boardReply = async () => {
             await newReply({ boardId });
             readReply(boardId).then(res => {
                 setReplyList(res.data.replies);
@@ -30,7 +30,7 @@ const Reply = ({ boardId }) => {
                 else setReplyIndex(res.data.replies.at(-1).index + 1);
             });
         }
-        boardRely();
+        boardReply();
     }, [boardId]);
 
     const changeReplyText = useCallback(e => {

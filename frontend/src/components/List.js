@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { addViews } from "../lib/api";
 import "./css/List.css";
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
@@ -34,8 +33,7 @@ const List = ({ lists }) => {
                                     state: {
                                         _id: value._id,
                                         id: value.id,
-                                        title: value.title,
-                                        view: value.view
+                                        title: value.title
                                     }
                                 }}>
                                     <Button
@@ -43,8 +41,7 @@ const List = ({ lists }) => {
                                             backgroundColor: "#748DA6"
                                         }}
                                         className="mui-btn"
-                                        variant="contained"
-                                        onClick={() => addViews({ _id: value._id })}>
+                                        variant="contained">
                                         DETAIL
                                     </Button>
                                 </Link>

@@ -16,7 +16,8 @@ export const readViewText = async (_id) => {
             {
                 projection: {
                     _id: 0,
-                    text: 1
+                    text: 1,
+                    view: 1
                 }
             }
         );
