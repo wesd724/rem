@@ -28,14 +28,14 @@
 
 .reply-list .reply {
     position: relative;
-    width: 32vmax;
+    width: 30vmax;
     top: 0px;
     font-size: 15px;
 }
 
 .reply > textarea {
     resize: none;
-    width: 28vmax;
+    width: 27vmax;
     border: 1px solid rgb(99, 110, 110);
 }
 

@@ -7,7 +7,7 @@ import { Button, TextField } from "@mui/material";
 
 const Reply = ({ boardId }) => {
     const userId = sessionStorage.getItem("id");
-    const [replyUpdateInput, setReplyUpdateInput] = useState(false);
+    const [flag, setFlag] = useState(false);
     const [replyList, setReplyList] = useState([{
         index: 0,
         userId: "",
@@ -55,29 +55,23 @@ const Reply = ({ boardId }) => {
     }, [boardId, reply, replyIndex, userId]);
 
     const updateOne = useCallback(async (e, data) => {
-        setReplyUpdateInput(!replyUpdateInput);
-        if (e.currentTarget.style.color !== "skyblue") {
-            e.currentTarget.style.color = "skyblue";
-            setOneReply(data.reply);
-            setIndex(data.index);
-        } else {
-            e.currentTarget.style.color = "#2f31bb";
+        if (flag === false) {
+            setFlag(true);
+        } else if (data.index === index) {
+            if (oneReply === "" || oneReply === data.reply) {
+                setFlag(false);
+                return;
+            }
             await updateOneReply({ ...data, index, reply: oneReply });
             setReplyList(replyList => replyList.filter(value => {
-                if (value.index === index) return value.reply = oneReply;
+                if (value.index === index) value.reply = oneReply;
                 return value;
             }))
+            setFlag(false);
         }
-
-        // setReplyUpdateInput(!replyUpdateInput);
-        // if (replyUpdateInput) {
-        //     await updateOneReply({ ...data, reply: oneReply });
-        //     setReplyList(replyList => replyList.filter(value => {
-        //         if(value.index === data.index) return value.reply = oneReply;
-        //         return value;
-        //     }))
-        // }
-    }, [replyUpdateInput, oneReply, index]);
+        setIndex(data.index);
+        setOneReply(data.reply);
+    }, [flag, oneReply, index]);
 
     const deleteOne = useCallback(async (data) => {
         await deleteOneReply(data);
@@ -93,7 +87,7 @@ const Reply = ({ boardId }) => {
                     <div key={value.index}>
                         <div className="reply">
                             {
-                                value.index === index && replyUpdateInput ?
+                                value.index === index && flag ?
                                     <textarea value={oneReply} onChange={changeOneReply} /> :
                                     <div>{value.reply}</div>
                             }
@@ -104,7 +98,9 @@ const Reply = ({ boardId }) => {
                         {
                             value.userId === userId ?
                                 <div>
-                                    <div className="update-icon" onClick={e => updateOne(e, { boardId, index: value.index, reply: value.reply })}>
+                                    <div className="update-icon"
+                                        style={{ color: value.index === index && flag ? "skyblue" : "#2f31bb" }}
+                                        onClick={e => updateOne(e, { boardId, index: value.index, reply: value.reply })}>
                                         <AiTwotoneEdit />
                                     </div>
                                     <MdDeleteForever className="remove-icon" onClick={() => deleteOne({ boardId, index: value.index })} />
