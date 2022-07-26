@@ -1,5 +1,6 @@
 import c from "../connect.js"
 import dotenv from "dotenv";
+import hashPassword from "../../lib/encryption.js";
 dotenv.config();
 
 export const login = async ({ id, password }) => {
@@ -7,10 +8,10 @@ export const login = async ({ id, password }) => {
         const db = connection.db(process.env.DB_NAME);
         const accountCollection = db.collection('account');
 
-        const cursor = accountCollection.find({ id });
-        const result = await cursor.toArray();
-        if (result.length === 0) return false;
-        else if (result[0].password === password) return true;
+        const result = await accountCollection.findOne({ id });
+        
+        if (result === null) return false;
+        else if (result.password === hashPassword(password)) return true;
         else return "The password is wrong";
     })
 }
