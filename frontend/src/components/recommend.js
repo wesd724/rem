@@ -10,6 +10,8 @@ const Recommend = ({ _id }) => {
     const [badPoint, setBadPoint] = useState(0);
     const [badFlag, setBadFlag] = useState(true);
 
+    const [act, setAct] = useState(true);
+
     useEffect(() => {
         readRecommend({ _id }).then(res => {
             setGoodPoint(res.data.good);
@@ -18,20 +20,22 @@ const Recommend = ({ _id }) => {
     }, [_id]);
 
     const increaseGoodPoint = useCallback(() => {
-        if (goodFlag) {
+        if (act && goodFlag) {
             recommend({ _id, recommend: "good" });
             setGoodPoint(good => good + 1);
             setGoodFlag(false);
+            setAct(false);
         }
-    }, [_id, goodFlag]);
+    }, [_id, goodFlag, act]);
 
     const increaseBadPoint = useCallback(() => {
-        if (badFlag) {
+        if (act && badFlag) {
             recommend({ _id, recommend: "bad" });
             setBadPoint(bad => bad + 1);
             setBadFlag(false);
+            setAct(false);
         }
-    }, [_id, badFlag]);
+    }, [_id, badFlag, act]);
 
     return (
         <div className="good-bad">

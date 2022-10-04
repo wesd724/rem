@@ -56,7 +56,7 @@ const View = ({ location, match, history }) => {
                 <div>
                     post {n}
                     <div className="view-count">
-                        views: {view + 1}
+                        views: {view}
                     </div>
                 </div>
                 <hr className="view-boundary" />

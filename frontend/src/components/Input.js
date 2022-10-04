@@ -54,7 +54,7 @@ const InputForm = () => {
         setData({ ...data, title: "", text: "" });
         setListLength(l => l + 1);
         setPage(1);
-        element.current.focus();
+        element.current.lastChild.firstChild.focus();
     }, [data, setPage]);
 
     const readPage = useCallback(async (page) => {
@@ -74,7 +74,7 @@ const InputForm = () => {
                 <Button style={{ position: "fixed" }} className="logout-button" onClick={logout} variant="outlined" color="error">LOGOUT</Button>
             </div>
             <div>
-                <TextField size="small" inputProps={{ maxLength: 18 }} name="title" className="title" id="filled-basic" label="TITLE" variant="filled" value={title} onChange={change} />
+                <TextField size="small" inputProps={{ maxLength: 18 }} name="title" className="title" id="filled-basic" label="TITLE" variant="filled" value={title} onChange={change} ref={element} />
             </div>
             <div>
                 <TextField
