@@ -1,4 +1,4 @@
-.form b {
+.form > b {
     position: relative;
     bottom: -15px;
     left: 1vw;
@@ -7,7 +7,6 @@
 .title {
     left: 2vw;
     width: 25vmax;
-    background-color: white;
 }
 
 .textarea {
@@ -19,7 +18,7 @@
 
 .logout-button {
     top: 20px;
-    width: 95px;
+    width: 85px;
     right: 20px;
     padding: 7px 20px;
 }
@@ -28,6 +27,12 @@
     left: 3vw;
     top: 10px;
     height: 30px;
+}
+
+.search {
+    bottom: 10px;
+    right: 20px;
+    width: 110px;
 }
 
 .pages {

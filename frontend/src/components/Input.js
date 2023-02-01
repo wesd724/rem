@@ -14,7 +14,7 @@ const InputForm = () => {
         title: "",
         text: ""
     });
-
+    const [searchText, setSearchText] = useState("");
     const [list, setList] = useState([]);
 
     const [listLength, setListLength] = useState(0);
@@ -63,6 +63,18 @@ const InputForm = () => {
         setPage(page);
     }, [setPage]);
 
+
+    const searchChange = useCallback(async (e) => {
+        // eslint-disable-next-line
+        if (!(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/.test(e.target.value))) {
+            setSearchText(e.target.value);
+            readData(1, e.target.value).then(res => {
+                setList([...res.data.result]);
+                setListLength(res.data.length);
+            });
+        } else alert("Special characters cannot be entered");
+    }, []);
+
     const logout = () => {
         sessionStorage.removeItem("id");
         window.location.replace("/");
@@ -71,17 +83,16 @@ const InputForm = () => {
     return (
         <div className="form">
             <div>
-                <Button style={{ position: "fixed" }} className="logout-button" onClick={logout} variant="outlined" color="error">LOGOUT</Button>
+                <Button sx={{ position: "fixed" }} onClick={logout} className="logout-button" variant="outlined" color="error">LOGOUT</Button>
             </div>
             <div>
-                <TextField size="small" inputProps={{ maxLength: 18 }} name="title" className="title" id="filled-basic" label="TITLE" variant="filled" value={title} onChange={change} ref={element} />
+                <TextField value={title} onChange={change} size="small" inputProps={{ maxLength: 18 }} name="title" className="title" label="TITLE" variant="standard" ref={element} />
             </div>
             <div>
                 <TextField
                     size="small"
                     className="textarea"
                     name="text"
-                    id="outlined-multiline-flexible"
                     label="TEXT"
                     multiline
                     maxRows={2}
@@ -89,6 +100,7 @@ const InputForm = () => {
                     onChange={change}
                 />
                 <Button className="write-button" onClick={click} variant="outlined">WRITE</Button>
+                <TextField sx={{ position: "fixed" }} size="small" onChange={searchChange} value={searchText} className="search" label="title search" variant="filled" />
             </div>
             <List lists={list} />
             <ul className="pages">

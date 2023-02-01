@@ -5,10 +5,10 @@ export const createData = data => {
     return axios.post(process.env.REACT_APP_URL + "/create", data);
 }
 
-export const readData = page => {
+export const readData = (page, search = "") => {
     return axios.get(process.env.REACT_APP_URL + `/read/${page}`, {
         params:
-            { length }
+            { length, search }
     });
 }
 

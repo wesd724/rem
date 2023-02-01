@@ -22,7 +22,7 @@ app.use("/info", infoRouter);
 app.use("/account", accountRounter);
 
 app.get("/read/:pages", (req, res) => {
-    read(req.params.pages, req.query.length)
+    read(req.params.pages, req.query.length, req.query.search)
         .then(response => res.send(response));
 })
 
