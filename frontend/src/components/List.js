@@ -19,6 +19,7 @@ const List = ({ lists }) => {
                         <TableCell>ID</TableCell>
                         <TableCell>TITLE</TableCell>
                         <TableCell>TEXT</TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
