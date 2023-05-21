@@ -1,10 +1,11 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import List from "./List";
 import { createData, readData } from "../lib/api";
 import "./css/input.css";
 import { LIST_LENGTH_PER_PAGE } from "../data/constant";
 import { userContext } from "../store/context";
 import { Button, TextField } from "@mui/material";
+import { debounce } from "lodash";
 
 const InputForm = () => {
     const userId = sessionStorage.getItem("id");
@@ -63,17 +64,23 @@ const InputForm = () => {
         setPage(page);
     }, [setPage]);
 
+    const debounceReadData = useMemo(
+        () =>
+            debounce(value => {
+                readData(1, value).then(res => {
+                    setList([...res.data.result]);
+                    setListLength(res.data.length);
+                });
+            }, 500),
+        []);
 
-    const searchChange = useCallback(async (e) => {
+    const searchChange = useCallback(e => {
         // eslint-disable-next-line
         if (!(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/.test(e.target.value))) {
             setSearchText(e.target.value);
-            readData(1, e.target.value).then(res => {
-                setList([...res.data.result]);
-                setListLength(res.data.length);
-            });
+            debounceReadData(e.target.value);
         } else alert("Special characters cannot be entered");
-    }, []);
+    }, [debounceReadData]);
 
     const logout = () => {
         sessionStorage.removeItem("id");
